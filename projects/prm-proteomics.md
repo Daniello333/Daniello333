@@ -28,6 +28,6 @@ The outputs are *candidate lists for instrument-method preparation*, not experim
 
 ## Portfolio/reproducibility status
 
-I inspected the five R scripts and selected exported tables and figures. A curated repository-ready archive has been prepared with five scripts, minimal result summaries, images and input requirements. Large DIA-NN source reports and laboratory data were deliberately excluded. **These source files have not yet been published as a dedicated public GitHub repository**. Full reproduction requires separately supplied input files and rights to access them.
+I inspected the five R scripts and selected exported tables and figures. A curated repository-ready archive has been prepared with five scripts, minimal result summaries, images and input requirements. Large DIA-NN source reports and laboratory data were deliberately excluded. A [selected R research-methods excerpt and checks](https://github.com/Daniello333/BioinformaticsProject/tree/claude/bioinformatics-project-access-3dtgkg/prm-targeted-proteomics) are now public. The original five-stage script collection has **not** yet been uploaded to GitHub. Full reproduction requires separately supplied input files and rights to access them.
 
 **Author:** Daniel Drabik · Jagiellonian University
