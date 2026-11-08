@@ -21,6 +21,6 @@ Research extensions examined interferon-marker ablations, donor/condition shift 
 
 ## Portfolio/reproducibility status
 
-The complete code, Python tests, synthetic examples and validation JSON were inspected from the submitted **CellScope ML v1.0** source archive. A clean, small repository-ready export has been prepared, excluding `.venv`, caches and large private data. A [selected original source module and Python tests](https://github.com/Daniello333/BioinformaticsProject/tree/claude/bioinformatics-project-access-3dtgkg/cellscope-ml) are now public. The full application and complete test suite are **not** yet uploaded.
+The complete code, Python tests, synthetic examples and validation JSON were inspected from the submitted **CellScope ML v1.0** source archive. A clean, small repository-ready export has been prepared, excluding `.venv`, caches and large private data. A [selected original source module and Python tests](https://github.com/Daniello333/cellscope-ml) are now public. The full application and complete test suite are **not** yet uploaded.
 
 **Author:** Daniel Drabik
