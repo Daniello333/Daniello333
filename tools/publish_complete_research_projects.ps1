@@ -125,6 +125,17 @@ foreach ($p in $plans) {
         $destFile = Join-Path $destination $relative
         New-Item -ItemType Directory -Path (Split-Path -Parent $destFile) -Force | Out-Null
         Copy-Item -LiteralPath $file.FullName -Destination $destFile -Force
+        # Remove trailing spaces in Markdown before the strict git whitespace check.
+        # This preserves source code and binary files unchanged.
+        if ($file.Extension -ieq '.md') {
+            $markdown = [System.IO.File]::ReadAllText($destFile)
+            $cleanMarkdown = [regex]::Replace($markdown, '(?m)[ \t]+(?=\r?$)', '')
+            if ($cleanMarkdown -cne $markdown) {
+                [System.IO.File]::WriteAllText(
+                    $destFile, $cleanMarkdown, [System.Text.UTF8Encoding]::new($false)
+                )
+            }
+        }
         $count++
     }
     Write-Host "Imported $count curated files into $($p.Name)." -ForegroundColor Green
