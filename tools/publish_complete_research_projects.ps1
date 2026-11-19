@@ -19,13 +19,21 @@ refuses obvious secrets/large files, and refuses to publish an unexpectedly smal
 #>
 [CmdletBinding()]
 param(
-    [string]$CellScopeZip = (Join-Path $PSScriptRoot 'cellscope-ml-v1.0-github-ready.zip'),
-    [string]$PrmZip = (Join-Path $PSScriptRoot 'prm-targeted-proteomics-github-ready.zip'),
+    [string]$CellScopeZip = '',
+    [string]$PrmZip = '',
     [switch]$Publish
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+# Resolve ZIP defaults after parameter binding: $PSScriptRoot is reliable in the script body.
+if ([string]::IsNullOrWhiteSpace($CellScopeZip)) {
+    $CellScopeZip = Join-Path -Path $PSScriptRoot -ChildPath 'cellscope-ml-v1.0-github-ready.zip'
+}
+if ([string]::IsNullOrWhiteSpace($PrmZip)) {
+    $PrmZip = Join-Path -Path $PSScriptRoot -ChildPath 'prm-targeted-proteomics-github-ready.zip'
+}
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     throw 'Git is not installed. Install Git for Windows, reopen PowerShell and try again.'
