@@ -125,14 +125,14 @@ foreach ($p in $plans) {
         $destFile = Join-Path $destination $relative
         New-Item -ItemType Directory -Path (Split-Path -Parent $destFile) -Force | Out-Null
         Copy-Item -LiteralPath $file.FullName -Destination $destFile -Force
-        # Remove trailing spaces in Markdown before the strict git whitespace check.
-        # This preserves source code and binary files unchanged.
-        if ($file.Extension -ieq '.md') {
-            $markdown = [System.IO.File]::ReadAllText($destFile)
-            $cleanMarkdown = [regex]::Replace($markdown, '(?m)[ \t]+(?=\r?$)', '')
-            if ($cleanMarkdown -cne $markdown) {
+        # Normalize trailing whitespace in curated Markdown and R source files.
+        # Only end-of-line horizontal whitespace is changed, never program statements.
+        if ($file.Extension -in @('.md', '.R', '.r')) {
+            $sourceText = [System.IO.File]::ReadAllText($destFile)
+            $cleanText = [regex]::Replace($sourceText, '(?m)[ \t]+(?=\r?$)', '')
+            if ($cleanText -cne $sourceText) {
                 [System.IO.File]::WriteAllText(
-                    $destFile, $cleanMarkdown, [System.Text.UTF8Encoding]::new($false)
+                    $destFile, $cleanText, [System.Text.UTF8Encoding]::new($false)
                 )
             }
         }
@@ -150,7 +150,7 @@ foreach ($p in $plans) {
     $hasChanges = @($changed | Where-Object { $_ -ne '' }).Count -gt 0
 
     if ($hasChanges) {
-        & git -C $destination diff --cached --stat
+        & git -C $destination --no-pager diff --cached --stat
         Assert-Exit "Diff summary for $($p.Name)"
         & git -C $destination commit -m 'feat: publish complete curated research source export'
         Assert-Exit "Commit to $($p.Name)"
