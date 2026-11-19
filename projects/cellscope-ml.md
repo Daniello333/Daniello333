@@ -21,6 +21,6 @@ Research extensions examined interferon-marker ablations, donor/condition shift 
 
 ## Portfolio/reproducibility status
 
-The complete code, Python tests, synthetic examples and validation JSON were inspected from the submitted **CellScope ML v1.0** source archive. A clean, small repository-ready export has been prepared, excluding `.venv`, caches and large private data. A [selected original source module and Python tests](https://github.com/Daniello333/cellscope-ml) are now public. The full application and complete test suite are **not** yet uploaded.
+The complete code, Python tests, synthetic examples and validation JSON were inspected from the submitted **CellScope ML v1.0** source archive. A clean, small repository-ready export has been prepared, excluding `.venv`, caches and large private data. The [full curated CellScope ML v1.0 application, Python package, CLI, Streamlit studio, automated tests and selected demonstration outputs](https://github.com/Daniello333/cellscope-ml) were published on 19 November 2026. The repository excludes the development virtual environment and large raw datasets. The cross-platform full-suite workflow is configured; its latest completion status should be checked in GitHub Actions.
 
 **Author:** Daniel Drabik
